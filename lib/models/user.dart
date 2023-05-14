@@ -1,44 +1,118 @@
 import 'dart:convert';
 
-List<User> userApiFunction(String val) {
-  return List<User>.from(json.decode(val).map((result) {
-    return User.fromjson(result);
-  }));
-}
+// a function that expects a list of string (but is actually json obj)
+List<User> userFromJson(String val) =>
+    List<User>.from(json.decode(val).map((result) => User.fromJson(result)));
 
+// IMPORTANT json codec methods
+// decoding is 4rm string to object, so the function type is Map/"User"
+// ENCODING is map => string, hence function type must be string
+
+// a function expecting a list of User model features (which is a json) I defined
+String userToJson(List<User> data) =>
+    json.encode(List<dynamic>.from(data.map((result) => result.toJson())));
+
+// Main class => User
 class User {
-  String name, username, email, phone;
   int id;
-  Map? address, company;
+  String name, username, email, phone;
+  Address address;
+  Company company;
+  Geo geo;
 
-  User(
-      {required this.id,
-      required this.name,
-      required this.username,
-      required this.email,
-      required this.phone,
-      this.address,
-      this.company});
+  User({
+    required this.id,
+    required this.username,
+    required this.name,
+    required this.email,
+    required this.phone,
+    required this.address,
+    required this.company,
+    required this.geo,
+  });
 
-  factory User.fromjson(Map<String, dynamic> json) {
+  // this is a "method" expecting json obj as parameter
+  factory User.fromJson(Map<String, dynamic> jsonObj) {
     return User(
-        id: json['id'],
-        name: json['name'],
-        username: json['username'],
-        email: json['email'],
-        phone: json['phone'],
-        address: json['address'],
-        company: json['company']);
+      id: jsonObj['id'],
+      name: jsonObj['name'],
+      username: jsonObj['username'],
+      email: jsonObj['email'],
+      phone: jsonObj['phone'],
+      address: Address.fromJson(jsonObj['address']),
+      company: Company.fromJson(jsonObj['company']),
+      geo: Geo.fromJson(jsonObj['geo']),
+    );
   }
-  Map<String, dynamic> userToJson() {
+  Map<String, dynamic> toJson() {
     return {
       "id": id,
       "name": name,
       "username": username,
       "email": email,
       "phone": phone,
-      "address": address ?? {"city": "downtown", "street": "wall"},
-      "company": company ?? {"name": "companyX", "bs": "e-commerce"},
+      "address": address.toJson(),
+      "company": company.toJson(),
+      "geo": geo.toJson(),
+    };
+  }
+}
+
+// Address Class
+class Address {
+  String street, city, zipcode;
+  Address({required this.street, required this.city, required this.zipcode});
+
+  factory Address.fromJson(Map<String, dynamic> json) {
+    return Address(
+      street: json["street"],
+      city: json["city"],
+      zipcode: json["zipcode"],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "street": street,
+      "city": city,
+      "zipcode": zipcode,
+    };
+  }
+}
+
+// Company Class
+class Company {
+  String name, bs, catchPhrase;
+  Company({required this.name, required this.bs, required this.catchPhrase});
+
+  factory Company.fromJson(json) => Company(
+        name: json["name"],
+        bs: json["bs"],
+        catchPhrase: json["catchPhrase"],
+      );
+
+  Map<String, dynamic> toJson() {
+    return {
+      "name": name,
+      "bs": bs,
+      "catchPhrase": catchPhrase,
+    };
+  }
+}
+
+// Geolocation Class
+class Geo {
+  String lat, lng;
+  Geo({required this.lat, required this.lng});
+
+  factory Geo.fromJson(Map<String, dynamic> json) => Geo(
+        lat: json["lat"],
+        lng: json["lng"],
+      );
+  Map<String, dynamic> toJson() {
+    return {
+      "lat": lat,
+      "lng": lng,
     };
   }
 }

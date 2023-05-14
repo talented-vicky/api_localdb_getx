@@ -41,107 +41,183 @@ class _UserPageState extends State<UserPage> {
               ),
         ),
         child: ListView.builder(
-          itemCount: 1,
+          itemCount: user!.length,
           itemBuilder: (BuildContext context, int ind) {
-            return Row(children: [
-              // icon and nickname
-              Column(children: [
-                const ImageIcon(
-                  AssetImage("images/profile.jpg"),
-                  size: 15,
-                ),
-                Text(
-                  user![ind].username,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ]),
-              // name, email and company
-              Column(children: [
-                Text(
-                  user![ind].name,
-                  style: const TextStyle(
-                      fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-                Column(children: [
-                  Row(children: [
-                    const Text(
-                      "Eamil: ",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      user![ind].email,
-                      style: const TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w300),
-                    ),
-                  ]),
-                  Row(children: [
-                    const Text(
-                      "Phone: ",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      user![ind].phone,
-                      style: const TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w300),
-                    ),
-                  ]),
-                ]),
-                // company info
-                Row(children: [
-                  Column(
+            return Container(
+              margin: const EdgeInsets.only(left: 5, right: 5),
+              child: Column(children: [
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "Company name",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        user![ind].company!["name"],
-                        style: const TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w300),
-                      ),
-                    ],
-                  ),
-                  Column(children: [
-                    const Text(
-                      "Business Keywords",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      user![ind].company!["bs"],
-                      style: const TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w300),
-                    ),
-                  ]),
-                ]),
+                      // icon and nickname
+                      Column(children: [
+                        Image.asset(
+                          "images/profile.jpg",
+                          width: 80,
+                          height: 80,
+                        ),
+                        Text(
+                          (user![ind].username).toLowerCase(),
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                      ]),
+                      // name, email and company
+                      Column(children: [
+                        Text(
+                          (user![ind].name).toUpperCase(),
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        Column(children: [
+                          Row(children: [
+                            const Text(
+                              "EMAIL: ",
+                              style: TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              (user![ind].email).toLowerCase(),
+                              style: const TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.w300),
+                            ),
+                          ]),
+                          Row(children: [
+                            const Text(
+                              "PHONE: ",
+                              style: TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              user![ind].phone,
+                              style: const TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.w300),
+                            ),
+                          ]),
+                        ]),
+                        // company info
+                        Row(children: [
+                          Column(
+                            children: [
+                              const Text(
+                                "Company name",
+                                style: TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                user![ind].company.name,
+                                style: const TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.w300),
+                              ),
+                            ],
+                          ),
+                          Column(children: [
+                            const Text(
+                              "Business Keywords",
+                              style: TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              user![ind].company.bs,
+                              style: const TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.w300),
+                            ),
+                          ]),
+                        ]),
+                      ]),
+                      // address and others
+                      Column(children: [
+                        const Text(
+                          "Address",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        Row(children: [
+                          Column(
+                            children: [
+                              const Text(
+                                "Street",
+                                style: TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                user![ind].address.street,
+                                style: const TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.w300),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              const Text(
+                                "city",
+                                style: TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                user![ind].address.city,
+                                style: const TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.w300),
+                              ),
+                            ],
+                          ),
+                          Column(children: [
+                            const Text(
+                              "ZIPCODE",
+                              style: TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              user![ind].address.zipcode,
+                              style: const TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.w300),
+                            ),
+                          ])
+                        ]),
+                        Row(children: [
+                          const Text(
+                            "LOCATION",
+                            style: TextStyle(
+                                fontSize: 12, fontWeight: FontWeight.bold),
+                          ),
+                          Column(children: [
+                            Row(
+                              children: [
+                                const Text(
+                                  "lat",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  user![ind].geo.lat,
+                                  style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                            Row(children: [
+                              const Text(
+                                "long",
+                                style: TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                user![ind].geo.lng,
+                                style: const TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.bold),
+                              )
+                            ]),
+                          ])
+                        ])
+                      ])
+                    ]),
+                const SizedBox(
+                  height: 25,
+                )
               ]),
-              // address and others
-              Column(children: [
-                const Text(
-                  "Address",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  user![ind].address!["street"],
-                  style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.w300),
-                ),
-                Text(
-                  user![ind].address!["city"],
-                  style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.w300),
-                ),
-                Text(
-                  user![ind].address!["zipcode"],
-                  style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.w300),
-                ),
-              ])
-            ]);
+            );
           },
         ),
       ),

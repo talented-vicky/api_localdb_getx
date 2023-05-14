@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-List<Post> postApiFunction(String val) {
-  return List<Post>.from(json.decode(val).map((result) {
-    return Post.fromJson(result);
-  }));
-}
+List<Post> postFromJson(String val) =>
+    List<Post>.from(json.decode(val).map((result) => Post.fromJson(result)));
+
+String postToJson(List<Post> data) =>
+    json.encode(List<dynamic>.from(data.map((result) => result.toJson())));
 
 class Post {
   int userId, id;
@@ -24,7 +24,7 @@ class Post {
         body: json["body"]);
   }
   // Map<String, dynamic> toJson() {
-  Map<String, dynamic> postToJson() {
+  Map<String, dynamic> toJson() {
     return {
       "userId": userId, "id": id,
       "title": title, "body": body

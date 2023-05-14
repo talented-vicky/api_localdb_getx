@@ -9,22 +9,19 @@ class ApiService {
   Future<List<Post>?> getPosts() async {
     final uri = Uri.parse("https://jsonplaceholder.typicode.com/posts");
     final resp = await client.get(uri);
+    // print((resp.body).runtimeType); // actually comes as a string
     if (resp.statusCode != 200) {
-      final error = Error();
-      error.statusCode = 404;
-      throw error;
+      throw Error();
     }
-    return postApiFunction(resp.body);
+    return postFromJson(resp.body);
   }
 
   Future<List<User>?> getUsers() async {
     final uri = Uri.parse("https://jsonplaceholder.typicode.com/users");
     final resp = await client.get(uri);
     if (resp.statusCode != 200) {
-      final error = Error();
-      error.statusCode = 404;
-      throw error;
+      throw Error();
     }
-    return userApiFunction(resp.body);
+    return userFromJson(resp.body);
   }
 }

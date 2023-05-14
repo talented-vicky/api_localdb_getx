@@ -11,6 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Nav();
+    return const MaterialApp(
+      title: 'Stuff',
+      debugShowCheckedModeBanner: false,
+      home: Nav(),
+    );
   }
 }

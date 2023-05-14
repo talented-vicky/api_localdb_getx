@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:api_loacaldb_getx/views/home.dart';
 import 'package:api_loacaldb_getx/views/post.dart';
 import 'package:api_loacaldb_getx/views/user.dart';
 
@@ -14,6 +15,7 @@ class _NavState extends State<Nav> {
   int ind = 0;
 
   final List<Widget> _pages = [
+    const HomePage(),
     const PostPage(),
     const UserPage(),
   ];
@@ -34,6 +36,8 @@ class _NavState extends State<Nav> {
       body: _pages[ind],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
+        selectedItemColor: Colors.blueAccent,
+        unselectedItemColor: Colors.black45,
         items: const [
           BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
           BottomNavigationBarItem(

@@ -40,10 +40,11 @@ class _PostPageState extends State<PostPage> {
           itemBuilder: (BuildContext context, int ind) {
             return Column(children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Title: ",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    "TITLE: ",
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     post![ind].title,
@@ -52,11 +53,21 @@ class _PostPageState extends State<PostPage> {
                   )
                 ],
               ),
-              Text(
-                post![ind].title,
-                style:
-                    const TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+              const SizedBox(
+                height: 5,
               ),
+              SizedBox(
+                width: 600,
+                child: Text(
+                  textAlign: TextAlign.justify,
+                  (post![ind].body).replaceAll("\n", " "),
+                  style: const TextStyle(
+                      fontSize: 13, fontWeight: FontWeight.w300),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              )
             ]);
           },
         ),
