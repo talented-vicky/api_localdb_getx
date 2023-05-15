@@ -34,7 +34,17 @@ class _PostPageState extends State<PostPage> {
     return Scaffold(
       body: Visibility(
         visible: isLoaded,
-        replacement: const CircularProgressIndicator.adaptive(),
+        replacement: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text("Loading..."),
+                SizedBox(
+                  height: 10,
+                ),
+                CircularProgressIndicator.adaptive(),
+              ]),
+        ),
         child: ListView.builder(
           itemCount: post?.length,
           itemBuilder: (BuildContext context, int ind) {

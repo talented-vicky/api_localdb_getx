@@ -31,13 +31,34 @@ class _NavState extends State<Nav> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('API Calls'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title:
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
+          Icon(
+            Icons.accessible_forward_rounded,
+            color: Color.fromARGB(255, 27, 63, 82),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Text(
+            "APICALLS",
+            style: TextStyle(
+                fontSize: 19,
+                letterSpacing: 1.8,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 34, 75, 95)),
+          ),
+        ]),
       ),
       body: _pages[ind],
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         type: BottomNavigationBarType.shifting,
-        selectedItemColor: Colors.blueAccent,
-        unselectedItemColor: Colors.black45,
+        selectedItemColor: Colors.blueGrey,
+        unselectedItemColor: Colors.indigoAccent,
         items: const [
           BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
           BottomNavigationBarItem(

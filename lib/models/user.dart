@@ -18,7 +18,6 @@ class User {
   String name, username, email, phone;
   Address address;
   Company company;
-  Geo geo;
 
   User({
     required this.id,
@@ -28,7 +27,6 @@ class User {
     required this.phone,
     required this.address,
     required this.company,
-    required this.geo,
   });
 
   // this is a "method" expecting json obj as parameter
@@ -41,7 +39,6 @@ class User {
       phone: jsonObj['phone'],
       address: Address.fromJson(jsonObj['address']),
       company: Company.fromJson(jsonObj['company']),
-      geo: Geo.fromJson(jsonObj['geo']),
     );
   }
   Map<String, dynamic> toJson() {
@@ -53,7 +50,6 @@ class User {
       "phone": phone,
       "address": address.toJson(),
       "company": company.toJson(),
-      "geo": geo.toJson(),
     };
   }
 }
@@ -61,13 +57,20 @@ class User {
 // Address Class
 class Address {
   String street, city, zipcode;
-  Address({required this.street, required this.city, required this.zipcode});
+  Geo geo;
+  Address({
+    required this.street,
+    required this.city,
+    required this.zipcode,
+    required this.geo,
+  });
 
   factory Address.fromJson(Map<String, dynamic> json) {
     return Address(
       street: json["street"],
       city: json["city"],
       zipcode: json["zipcode"],
+      geo: Geo.fromJson(json["geo"]),
     );
   }
 
@@ -76,6 +79,7 @@ class Address {
       "street": street,
       "city": city,
       "zipcode": zipcode,
+      "geo": geo.toJson(),
     };
   }
 }

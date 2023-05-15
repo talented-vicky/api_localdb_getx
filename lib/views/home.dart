@@ -6,15 +6,26 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        const Text("Home Page"),
-        Row(children: const [
-          Text("Welcome Aboard"),
-          Text("Arigato!!!"),
-          Text("Time well Done, boy")
-        ])
-      ])),
-    );
+        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Image.asset(
+        "images/api.jpg",
+        width: 700,
+        height: 300,
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      const Text(
+        "Welcome to API",
+        style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      const Text(
+        "Check out free post and user API info from jsonplaceholder",
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+      ),
+    ]));
   }
 }
