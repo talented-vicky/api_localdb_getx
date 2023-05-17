@@ -15,7 +15,7 @@ String userToJson(List<User> data) =>
 // Main class => User
 class User {
   int id;
-  String name, username, email, phone;
+  String name, username, email, phone, website;
   Address address;
   Company company;
 
@@ -25,6 +25,7 @@ class User {
     required this.name,
     required this.email,
     required this.phone,
+    required this.website,
     required this.address,
     required this.company,
   });
@@ -37,6 +38,7 @@ class User {
       username: jsonObj['username'],
       email: jsonObj['email'],
       phone: jsonObj['phone'],
+      website: jsonObj['website'],
       address: Address.fromJson(jsonObj['address']),
       company: Company.fromJson(jsonObj['company']),
     );
@@ -48,6 +50,7 @@ class User {
       "username": username,
       "email": email,
       "phone": phone,
+      "website": website,
       "address": address.toJson(),
       "company": company.toJson(),
     };
@@ -56,12 +59,13 @@ class User {
 
 // Address Class
 class Address {
-  String street, city, zipcode;
+  String street, city, zipcode, suite;
   Geo geo;
   Address({
     required this.street,
     required this.city,
     required this.zipcode,
+    required this.suite,
     required this.geo,
   });
 
@@ -70,6 +74,7 @@ class Address {
       street: json["street"],
       city: json["city"],
       zipcode: json["zipcode"],
+      suite: json["suite"],
       geo: Geo.fromJson(json["geo"]),
     );
   }
@@ -79,6 +84,7 @@ class Address {
       "street": street,
       "city": city,
       "zipcode": zipcode,
+      "suite": suite,
       "geo": geo.toJson(),
     };
   }

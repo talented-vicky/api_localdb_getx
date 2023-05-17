@@ -108,6 +108,6 @@ class FileHandler {
     _postSet.removeWhere((elem) => elem == postToDelete);
 
     final postList = _postSet.map((e) => e.toJson().toString());
-    fl.writeAsString(jsonEncode(postList));
+    await fl.writeAsString(jsonEncode(postList));
   }
 }

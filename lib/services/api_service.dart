@@ -9,7 +9,7 @@ class ApiService {
   Future<List<Post>?> getPosts() async {
     final uri = Uri.parse("https://jsonplaceholder.typicode.com/posts");
     final resp = await client.get(uri);
-    // print((resp.body).runtimeType); // actually comes as a string
+    // print((resp.body).runtimeType); // actually comes as a string of list
     if (resp.statusCode != 200) {
       throw Error();
     }
