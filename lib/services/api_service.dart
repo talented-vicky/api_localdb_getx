@@ -16,7 +16,7 @@ class ApiService {
     return postFromJson(resp.body);
   }
 
-  Future<List<User>?> getUsers() async {
+  Future<List<User>> getUsers() async {
     final uri = Uri.parse("https://jsonplaceholder.typicode.com/users");
     final resp = await client.get(uri);
     if (resp.statusCode != 200) {

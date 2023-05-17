@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:api_loacaldb_getx/views/home.dart';
-import 'package:api_loacaldb_getx/views/post.dart';
-import 'package:api_loacaldb_getx/views/user.dart';
+import 'package:api_loacaldb_getx/views/post_temp.dart';
+// import 'package:api_loacaldb_getx/views/post.dart';
+import 'package:api_loacaldb_getx/views/user_temp.dart';
+// import 'package:api_loacaldb_getx/views/user.dart';
 
 class Nav extends StatefulWidget {
   const Nav({super.key});
@@ -58,7 +60,7 @@ class _NavState extends State<Nav> {
         backgroundColor: Colors.transparent,
         type: BottomNavigationBarType.shifting,
         selectedItemColor: Colors.blueGrey,
-        unselectedItemColor: Colors.indigoAccent,
+        unselectedItemColor: const Color.fromARGB(255, 35, 165, 135),
         items: const [
           BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
           BottomNavigationBarItem(
