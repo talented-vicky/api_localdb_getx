@@ -16,6 +16,7 @@ class Post {
       required this.title,
       required this.body});
 
+  // for retrieving from database (from json to Post Class datatype)
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
         userId: json["userId"],
@@ -23,7 +24,8 @@ class Post {
         title: json["title"],
         body: json["body"]);
   }
-  // Map<String, dynamic> toJson() {
+
+  // for inserting into database (from Post class to json datatype)
   Map<String, dynamic> toJson() {
     return {
       "userId": userId, "id": id,

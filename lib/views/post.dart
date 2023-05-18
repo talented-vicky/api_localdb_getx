@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:api_loacaldb_getx/services/api_service.dart';
 import 'package:api_loacaldb_getx/models/post.dart';
 
-import 'package:api_loacaldb_getx/handlers/file_handler.dart';
+// import 'package:api_loacaldb_getx/handlers/file_handler.dart';
+import 'package:api_loacaldb_getx/handlers/db_handler.dart';
 
 class PostPage extends StatefulWidget {
   const PostPage({super.key});
@@ -13,7 +14,7 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-  final FileHandler fileHandler = FileHandler.fhInstance;
+  final DBHandler dbHandler = DBHandler.dbInstance;
   List<Post> postList = [];
 
   List<Post>? post;
@@ -29,7 +30,7 @@ class _PostPageState extends State<PostPage> {
             // button to read post
             ElevatedButton(
               onPressed: () async {
-                final allPost = await fileHandler.readPosts();
+                final allPost = await dbHandler.getPosts();
                 setState(() {
                   postList = allPost;
                 });
@@ -50,13 +51,14 @@ class _PostPageState extends State<PostPage> {
                 if (postList.isEmpty) {
                   final firstPost = post![0];
                   postList.add(firstPost);
-                  return await fileHandler.writePost(firstPost);
+                  await dbHandler.insertPost(firstPost);
+                  return;
                 }
 
                 final newPost = post![ind];
                 postList.add(newPost);
 
-                await fileHandler.writePost(newPost);
+                await dbHandler.insertPost(newPost);
                 ind += 1;
               },
               child: Container(

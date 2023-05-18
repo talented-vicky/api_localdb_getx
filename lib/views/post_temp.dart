@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:api_loacaldb_getx/services/api_service.dart';
 import 'package:api_loacaldb_getx/models/post.dart';
 
-import 'package:api_loacaldb_getx/handlers/file_handler.dart';
+// import 'package:api_loacaldb_getx/handlers/file_handler.dart';
 
 class PostPage extends StatefulWidget {
   const PostPage({super.key});
@@ -13,7 +13,7 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-  final FileHandler fileHandler = FileHandler.fhInstance;
+  // final FileHandler fileHandler = FileHandler.fhInstance;
   List<Post> fileList = [];
 
   List<Post>? post;
