@@ -13,10 +13,7 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-  // final FileHandler fileHandler = FileHandler.fhInstance;
-  List<Post> fileList = [];
-
-  List<Post>? post;
+  List<Post>? post = [];
   var isLoaded = false;
 
   @override

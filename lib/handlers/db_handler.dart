@@ -146,7 +146,7 @@ class DBHandler {
   }
 
   // DELETING user & post data
-  Future deleteUser(int userId) async {
+  deleteUser(int userId) async {
     final Database db = await userDatabase;
     return await db.delete(
       userTableName,

@@ -11,7 +11,7 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
-  List<User> user = [];
+  List<User>? user = [];
   var isLoaded = false;
 
   @override
@@ -22,7 +22,7 @@ class _UserPageState extends State<UserPage> {
 
   void _userData() async {
     user = await ApiService().getUsers();
-    if (user.isNotEmpty) {
+    if (user != null) {
       setState(() {
         isLoaded = true;
       });
@@ -37,7 +37,7 @@ class _UserPageState extends State<UserPage> {
           child: CircularProgressIndicator.adaptive(),
         ),
         child: ListView.builder(
-          itemCount: user.length,
+          itemCount: user!.length,
           itemBuilder: (BuildContext context, int ind) {
             return Container(
               margin: const EdgeInsets.only(bottom: 25, left: 20, right: 20),
@@ -74,14 +74,14 @@ class _UserPageState extends State<UserPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          (user[ind].name).toUpperCase(),
+                          (user![ind].name).toUpperCase(),
                           style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color: Color.fromARGB(255, 35, 165, 135)),
                         ),
                         Text(
-                          '@${(user[ind].username).toLowerCase()}',
+                          '@${(user![ind].username).toLowerCase()}',
                           style: const TextStyle(
                               fontSize: 10, fontWeight: FontWeight.w300),
                         ),
@@ -90,7 +90,7 @@ class _UserPageState extends State<UserPage> {
                         ),
                         SizedBox(
                           child: Text(
-                            user[ind].email,
+                            user![ind].email,
                             style: const TextStyle(
                                 fontSize: 10, fontWeight: FontWeight.w300),
                           ),
@@ -100,7 +100,7 @@ class _UserPageState extends State<UserPage> {
                         ),
                         SizedBox(
                           child: Text(
-                            user[ind].phone,
+                            user![ind].phone,
                             style: const TextStyle(
                                 fontSize: 10, fontWeight: FontWeight.w300),
                           ),
@@ -121,14 +121,14 @@ class _UserPageState extends State<UserPage> {
                           height: 20,
                         ),
                         Text(
-                          "Website: ${user[ind].website}",
+                          "Website: ${user![ind].website}",
                           style: const TextStyle(
                               fontSize: 12,
                               fontStyle: FontStyle.italic,
                               fontWeight: FontWeight.w300),
                         ),
                         Text(
-                          "Suite: ${user[ind].address.suite}",
+                          "Suite: ${user![ind].address.suite}",
                           style: const TextStyle(
                               fontSize: 12,
                               fontStyle: FontStyle.italic,
@@ -159,13 +159,13 @@ class _UserPageState extends State<UserPage> {
                               Column(
                                 children: [
                                   Text(
-                                    "LAT: ${user[ind].address.geo.lat}",
+                                    "LAT: ${user![ind].address.geo.lat}",
                                     style: const TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w300),
                                   ),
                                   Text(
-                                    "LONG: ${user[ind].address.geo.lng}",
+                                    "LONG: ${user![ind].address.geo.lng}",
                                     style: const TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w300),
@@ -191,17 +191,17 @@ class _UserPageState extends State<UserPage> {
                                 height: 3,
                               ),
                               Text(
-                                "Name: ${user[ind].company.name}",
+                                "Name: ${user![ind].company.name}",
                                 style: const TextStyle(
                                     fontSize: 12, fontWeight: FontWeight.w300),
                               ),
                               Text(
-                                user[ind].company.catchPhrase,
+                                user![ind].company.catchPhrase,
                                 style: const TextStyle(
                                     fontSize: 12, fontWeight: FontWeight.w300),
                               ),
                               Text(
-                                "bs: ${user[ind].company.bs}",
+                                "bs: ${user![ind].company.bs}",
                                 style: const TextStyle(
                                     fontSize: 12, fontWeight: FontWeight.w300),
                               ),
@@ -225,14 +225,14 @@ class _UserPageState extends State<UserPage> {
                                   height: 3,
                                 ),
                                 Text(
-                                  "Street: ${user[ind].address.street}",
+                                  "Street: ${user![ind].address.street}",
                                   style: const TextStyle(
                                       fontSize: 12,
                                       fontStyle: FontStyle.italic,
                                       fontWeight: FontWeight.w300),
                                 ),
                                 Text(
-                                  "City: ${user[ind].address.city}",
+                                  "City: ${user![ind].address.city}",
                                   style: const TextStyle(
                                       fontSize: 12,
                                       fontStyle: FontStyle.italic,
