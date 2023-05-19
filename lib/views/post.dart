@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:api_loacaldb_getx/services/api_service.dart';
 import 'package:api_loacaldb_getx/models/post.dart';
+import 'package:api_loacaldb_getx/controllers/inc_state_ctrl.dart';
 
 // import 'package:api_loacaldb_getx/handlers/file_handler.dart';
 import 'package:api_loacaldb_getx/handlers/db_handler.dart';
@@ -16,25 +18,32 @@ class PostPage extends StatefulWidget {
 class _PostPageState extends State<PostPage> {
   final DBHandler dbHandler = DBHandler.dbInstance;
   // List<Post> postList = [];
+  final incCtrl = Get.put(IncStateCtrl());
 
   List<Post>? post;
-  int ind = 0;
 
   @override
   Widget build(BuildContext context) {
+    // int ind = 0;
+    incCtrl.inc.value;
     return Scaffold(
       appBar: AppBar(
         actions: [
           ElevatedButton(
             onPressed: () async {
               post = await ApiService().getPosts();
-              final newPost = post![ind];
+              // final newPost = post![ind];
+              final newPost = post![incCtrl.inc.value];
 
               await DBHandler.dbInstance.insertPost(newPost);
               setState(() {
-                ind += 1;
+                // ind += 1;
+                incCtrl.increment();
               });
             },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color.fromARGB(255, 33, 182, 147),
+            ),
             child: const Text(
               "Fetch New Post",
               style: TextStyle(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:api_loacaldb_getx/services/api_service.dart';
 import 'package:api_loacaldb_getx/models/user.dart';
+import 'package:api_loacaldb_getx/controllers/view_state_ctrl.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key});
@@ -12,7 +14,7 @@ class UserPage extends StatefulWidget {
 
 class _UserPageState extends State<UserPage> {
   List<User>? user = [];
-  var isLoaded = false;
+  final viewCtrl = Get.put(ViewStateCtrl());
 
   @override
   void initState() {
@@ -24,7 +26,7 @@ class _UserPageState extends State<UserPage> {
     user = await ApiService().getUsers();
     if (user != null) {
       setState(() {
-        isLoaded = true;
+        viewCtrl.changeVisb();
       });
     }
   }
@@ -32,9 +34,19 @@ class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Visibility(
-        replacement: const Center(
-          child: CircularProgressIndicator.adaptive(),
+        body: Obx(
+      () => Visibility(
+        visible: viewCtrl.visb.value,
+        replacement: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text("Loading Users..."),
+                SizedBox(
+                  height: 10,
+                ),
+                CircularProgressIndicator.adaptive(),
+              ]),
         ),
         child: ListView.builder(
           itemCount: user!.length,
@@ -281,6 +293,6 @@ class _UserPageState extends State<UserPage> {
           },
         ),
       ),
-    );
+    ));
   }
 }

@@ -31,8 +31,8 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.13.5
-  path_provider: ^2.0.1
-  sqflite: ^2.2.8+2
+  path_provider:
+  sqflite: 
   get: ^4.6.1
 
 

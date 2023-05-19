@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:api_loacaldb_getx/services/api_service.dart';
 import 'package:api_loacaldb_getx/models/user.dart';
+import 'package:api_loacaldb_getx/controllers/inc_state_ctrl.dart';
 
 import 'package:api_loacaldb_getx/handlers/db_handler.dart';
 
@@ -15,24 +16,27 @@ class UserPage extends StatefulWidget {
 
 class _UserPageState extends State<UserPage> {
   // List<User> userList = [];
+  final incCtrl = Get.put(IncStateCtrl());
   List<User>? user;
-  int ind = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          ElevatedButton(
+      appBar: AppBar(actions: [
+        Obx(
+          () => ElevatedButton(
             onPressed: () async {
               user = await ApiService().getUsers();
-              final newUser = user![ind];
+              final newUser = user![incCtrl.inc.value];
 
               await DBHandler.dbInstance.insertUser(newUser);
               setState(() {
-                ind += 1;
+                incCtrl.increment();
               });
             },
+            style: TextButton.styleFrom(
+              backgroundColor: const Color.fromARGB(255, 33, 182, 147),
+            ),
             child: const Text(
               "Fetch New User",
               style: TextStyle(
@@ -40,9 +44,9 @@ class _UserPageState extends State<UserPage> {
                 fontWeight: FontWeight.w400,
               ),
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ]),
       body: FutureBuilder<List<User>>(
           future: DBHandler.dbInstance.getUsers(),
           builder: (BuildContext context, AsyncSnapshot<List<User>> snapshot) {

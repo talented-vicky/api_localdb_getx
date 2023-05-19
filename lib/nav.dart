@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:api_loacaldb_getx/views/home.dart';
 import 'package:api_loacaldb_getx/views/post_temp.dart';
 // import 'package:api_loacaldb_getx/views/post.dart';
 import 'package:api_loacaldb_getx/views/user_temp.dart';
 // import 'package:api_loacaldb_getx/views/user.dart';
+
+import 'package:api_loacaldb_getx/controllers/inc_state_ctrl.dart';
 
 class Nav extends StatefulWidget {
   const Nav({super.key});
@@ -14,7 +17,8 @@ class Nav extends StatefulWidget {
 }
 
 class _NavState extends State<Nav> {
-  int ind = 0;
+  final incCtrl = Get.put(IncStateCtrl());
+  // int ind = 0;
 
   final List<Widget> _pages = [
     const HomePage(),
@@ -22,9 +26,10 @@ class _NavState extends State<Nav> {
     const UserPage(),
   ];
 
-  void _flip(int value) {
+  void _flip(int val) {
     setState(() {
-      ind = value;
+      incCtrl.inc.value = val;
+      // ind = val;
     });
   }
 
@@ -54,7 +59,8 @@ class _NavState extends State<Nav> {
           ),
         ]),
       ),
-      body: _pages[ind],
+      // body: _pages[ind],
+      body: _pages[incCtrl.inc.value],
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -67,7 +73,8 @@ class _NavState extends State<Nav> {
               label: "Posts", icon: Icon(Icons.newspaper_sharp)),
           BottomNavigationBarItem(label: "Users", icon: Icon(Icons.person)),
         ],
-        currentIndex: ind,
+        // currentIndex: ind,
+        currentIndex: incCtrl.inc.value,
         onTap: _flip,
       ),
     );

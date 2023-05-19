@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:api_loacaldb_getx/services/api_service.dart';
 import 'package:api_loacaldb_getx/models/post.dart';
+import 'package:api_loacaldb_getx/controllers/view_state_ctrl.dart';
 
 // import 'package:api_loacaldb_getx/handlers/file_handler.dart';
 
 class PostPage extends StatefulWidget {
   const PostPage({super.key});
-
   @override
   State<PostPage> createState() => _PostPageState();
 }
 
 class _PostPageState extends State<PostPage> {
   List<Post>? post = [];
-  var isLoaded = false;
+  // var isLoaded = false;
+  final viewCtrl = Get.put(ViewStateCtrl());
 
   @override
   void initState() {
@@ -26,7 +28,8 @@ class _PostPageState extends State<PostPage> {
     post = await ApiService().getPosts();
     if (post != null) {
       setState(() {
-        isLoaded = true;
+        // isLoaded = true;
+        viewCtrl.changeVisb();
       });
     }
   }
@@ -34,8 +37,9 @@ class _PostPageState extends State<PostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Visibility(
-        visible: isLoaded,
+        body: Obx(
+      () => Visibility(
+        visible: viewCtrl.visb.value,
         replacement: Center(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -161,6 +165,6 @@ class _PostPageState extends State<PostPage> {
           },
         ),
       ),
-    );
+    ));
   }
 }
