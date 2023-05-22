@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:api_loacaldb_getx/views/home.dart';
-import 'package:api_loacaldb_getx/views/post_temp.dart';
-// import 'package:api_loacaldb_getx/views/post.dart';
-import 'package:api_loacaldb_getx/views/user_temp.dart';
-// import 'package:api_loacaldb_getx/views/user.dart';
-
-import 'package:api_loacaldb_getx/controllers/inc_state_ctrl.dart';
+import './views/home.dart';
+// import './views/post.dart';
+// import './views/user.dart';
+import './views/post_temp.dart';
+import './views/user_temp.dart';
+import './controllers/inc_state_ctrl.dart';
 
 class Nav extends StatefulWidget {
   const Nav({super.key});

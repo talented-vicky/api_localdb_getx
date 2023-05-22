@@ -12,7 +12,6 @@ List<User> userFromJson(String val) =>
 String userToJson(List<User> data) =>
     json.encode(List<dynamic>.from(data.map((result) => result.toJson())));
 
-// Main class => User
 class User {
   int id;
   String name, username, email, phone, website;

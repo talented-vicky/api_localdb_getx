@@ -315,8 +315,16 @@ class _UserPageState extends State<UserPage> {
                         ));
                   });
             } else {
-              return const Center(
-                child: CircularProgressIndicator.adaptive(),
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: const [
+                  Text(
+                    "awaiting user database...",
+                  ),
+                  Center(
+                    child: CircularProgressIndicator.adaptive(),
+                  ),
+                ],
               );
             }
           }),

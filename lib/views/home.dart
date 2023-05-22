@@ -63,18 +63,25 @@ class _HomePageState extends State<HomePage> {
 
 
 
+
+
+
+
+
+
 // Padding(
-//         padding: const EdgeInsets.all(3),
+//         padding: const EdgeInsets.all(5),
 //         child: Column(
 //           children: [
-//             // const Text(
-//             //   "Acc",
-//             //   style: TextStyle(
-//             //     fontSize: 22,
-//             //     fontWeight: FontWeight.w500,
-//             //   ),
-//             // ),
+//             const Text(
+//               "User Account",
+//               style: TextStyle(
+//                 fontSize: 22,
+//                 fontWeight: FontWeight.w500,
+//               ),
+//             ),
 //             ListTile(
+//               tileColor: Colors.blueGrey,
 //               title: const Text(
 //                 "Welcome",
 //                 style: TextStyle(
@@ -95,42 +102,46 @@ class _HomePageState extends State<HomePage> {
 //             if (_auth == AuthVal.signUp)
 //               Container(
 //                 padding: const EdgeInsets.all(5),
-//                 child: Column(
-//                   children: [
-//                     CustomText(
-//                       txt: "Enter Fullname",
-//                       ctrl: _nameCtrl,
-//                     ),
-//                     const SizedBox(
-//                       height: 5,
-//                     ),
-//                     CustomText(
-//                       txt: "Enter Email",
-//                       ctrl: _emailCtrl,
-//                     ),
-//                     const SizedBox(
-//                       height: 5,
-//                     ),
-//                     CustomText(
-//                       txt: "Enter Password",
-//                       ctrl: _passCtrl,
-//                     ),
-//                     const SizedBox(
-//                       height: 5,
-//                     ),
-//                     CustomButton(
-//                       txt: "Sign Up",
-//                       onTap: () {
-//                         //
-//                         if (_signInKey.currentState!.validate()) {
-//                           // sign in function
-//                         }
-//                       },
-//                     )
-//                   ],
+//                 child: Form(
+//                   key: _signUpKey,
+//                   child: Column(
+//                     children: [
+//                       CustomText(
+//                         txt: "Enter Fullname",
+//                         ctrl: _nameCtrl,
+//                       ),
+//                       const SizedBox(
+//                         height: 15,
+//                       ),
+//                       CustomText(
+//                         txt: "Enter Email",
+//                         ctrl: _emailCtrl,
+//                       ),
+//                       const SizedBox(
+//                         height: 51,
+//                       ),
+//                       CustomText(
+//                         txt: "Enter Password",
+//                         ctrl: _passCtrl,
+//                       ),
+//                       const SizedBox(
+//                         height: 15,
+//                       ),
+//                       CustomButton(
+//                         txt: "Sign Up",
+//                         onTap: () {
+//                           //
+//                           if (_signInKey.currentState!.validate()) {
+//                             // sign in function
+//                           }
+//                         },
+//                       )
+//                     ],
+//                   ),
 //                 ),
 //               ),
 //             ListTile(
+//               tileColor: Colors.blueGrey,
 //               title: const Text(
 //                 "Sign In",
 //                 style: TextStyle(
@@ -158,11 +169,14 @@ class _HomePageState extends State<HomePage> {
 //                         ctrl: _emailCtrl,
 //                       ),
 //                       const SizedBox(
-//                         height: 5,
+//                         height: 15,
 //                       ),
 //                       CustomText(
 //                         txt: "Enter Password",
 //                         ctrl: _passCtrl,
+//                       ),
+//                       const SizedBox(
+//                         height: 15,
 //                       ),
 //                       CustomButton(
 //                         txt: "LogIn",
@@ -171,6 +185,9 @@ class _HomePageState extends State<HomePage> {
 //                             // do something to save login info
 //                           }
 //                         },
+//                       ),
+//                       const SizedBox(
+//                         height: 5,
 //                       )
 //                     ],
 //                   ),
@@ -179,4 +196,3 @@ class _HomePageState extends State<HomePage> {
 //           ],
 //         ),
 //       ),
-//     )

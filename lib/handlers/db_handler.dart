@@ -1,11 +1,11 @@
 import 'dart:io';
 
+import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart';
 
-import 'package:api_loacaldb_getx/models/user.dart';
-import 'package:api_loacaldb_getx/models/post.dart';
+import '../models/user.dart';
+import '../models/post.dart';
 
 class DBHandler {
   DBHandler._privateController();
@@ -49,6 +49,7 @@ class DBHandler {
   Future<Database> initPostDB() async {
     Directory dir = await getApplicationDocumentsDirectory();
     String path = join(dir.path, _postDBName);
+
     return await openDatabase(
       path,
       onCreate: _createPostDB,

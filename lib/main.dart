@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:api_loacaldb_getx/nav.dart';
+import './nav.dart';
 
 void main() {
   runApp(const MyApp());

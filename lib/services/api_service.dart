@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 
-import 'package:api_loacaldb_getx/models/post.dart';
-import 'package:api_loacaldb_getx/models/user.dart';
+import '../models/post.dart';
+import '../models/user.dart';
 
 class ApiService {
   var client = http.Client();
